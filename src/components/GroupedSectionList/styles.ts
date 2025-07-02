@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
-import Typography from '../../theme/Typography';
+import Typography from '../../theme/typography';
 
 export default StyleSheet.create({
   sectionHeader: {

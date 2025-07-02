@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
-import Typography from '../../theme/Typography'; // Import Typography
+import Typography from '../../theme/typography'; // Import Typography
 
 export const styles = StyleSheet.create({
   container: { marginBottom: 16 },

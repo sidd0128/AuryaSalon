@@ -7,7 +7,7 @@ import { RootStackParamList } from '../navigation/types';
 import { colors } from '../theme/colors';
 import HeaderBar from '../components/HeaderBar';
 import ListItem from '../components/MyAccountListItem';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 
 const MyAccountScreen: React.FC = () => {

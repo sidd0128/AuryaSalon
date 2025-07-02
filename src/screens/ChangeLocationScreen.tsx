@@ -21,7 +21,7 @@ import CustomAlert from '../components/CustomAlert';
 import { colors } from '../theme/colors';
 import { AlertVariant } from '../components/CustomAlert/types';
 import { reverseGeocode } from '../helpers/reverseGeocode';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ChangeLocation'>;
 

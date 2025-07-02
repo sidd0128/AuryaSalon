@@ -17,7 +17,7 @@ import ChatBubble from '../components/ChatBubble';
 import { useChatMessages } from '../hooks/useChatMessages';
 import { colors } from '../theme/colors';
 import { useImagePickerModal } from '../hooks/useImagePickerModal';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Chat'>;
 

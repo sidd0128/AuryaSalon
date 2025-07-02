@@ -22,7 +22,7 @@ import HeaderBar from '../components/HeaderBar';
 import SalonImageCarousel from '../components/SalonImageCarousel';
 import { colors } from '../theme/colors';
 import CustomerReviewScreen from './CustomerReviewScreen';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 type TabType = 'Services' | 'Photos' | 'About' | 'Reviews';
 type Props = NativeStackScreenProps<RootStackParamList, 'SalonInfo'>;

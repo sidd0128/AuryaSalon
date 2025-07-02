@@ -21,7 +21,7 @@ import { useBottomSheetModal } from '../hooks/useBottomSheetModal';
 
 import { RootStackParamList, Salon, Booking } from '../navigation/types';
 import { colors } from '../theme/colors';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'SearchSalons'>;
 type RoutePropType = RouteProp<RootStackParamList, 'SearchSalons'>;

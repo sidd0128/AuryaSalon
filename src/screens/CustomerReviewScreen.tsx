@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 import ReviewCard, { ReviewCardProps } from '../components/ReviewCard';
 import { colors } from '../theme/colors';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 
 type StoredReview = ReviewCardProps & { id: string; timestamp: number };

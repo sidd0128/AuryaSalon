@@ -29,7 +29,7 @@ import Animated, {
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
 import { colors } from '../theme/colors';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 const { width, height } = Dimensions.get('window');
 

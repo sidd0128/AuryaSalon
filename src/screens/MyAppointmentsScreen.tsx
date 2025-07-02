@@ -17,7 +17,7 @@ import { Booking, RootStackParamList } from '../navigation/types';
 import MyAppointmentBookingListItem from '../components/MyAppointmentBookingListItem';
 import CustomAlert from '../components/CustomAlert';
 import { colors } from '../theme/colors';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 import { AlertVariant } from '../components/CustomAlert/types';
 

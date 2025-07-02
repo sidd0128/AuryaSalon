@@ -21,7 +21,7 @@ import { useCart } from '../context/CartContext';
 import { colors } from '../theme/colors';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
-import Typography from '../theme/Typography';
+import Typography from '../theme/typography';
 
 type BookingScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Booking'>;
 type BookingScreenRouteProp = RouteProp<RootStackParamList, 'Booking'>;
