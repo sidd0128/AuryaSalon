@@ -40,7 +40,7 @@ const MyAccountScreen: React.FC = () => {
             </View>
           </View>
           <View style={styles.savingsBanner}>
-            <Text style={styles.savingsText}>You saved ₹25 with Salon Veda 😊</Text>
+            <Text style={styles.savingsText}>You saved ₹25 with Aurya 😊</Text>
           </View>
         </View>
 
