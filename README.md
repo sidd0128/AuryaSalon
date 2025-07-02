@@ -98,7 +98,9 @@ src/
 
 ## Demo Video
 
-See the app in action: https://github.com/user-attachments/assets/1baf8afa-14ce-4cf8-9b84-33ca8ca9e8c0
+See the app in action: 
+
+https://github.com/user-attachments/assets/1baf8afa-14ce-4cf8-9b84-33ca8ca9e8c0
 
 ## Getting Started
 
