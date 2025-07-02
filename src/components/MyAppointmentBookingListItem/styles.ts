@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography'; // Import Typography
 
 export default StyleSheet.create({
   bookingCard: {
@@ -25,9 +26,7 @@ export default StyleSheet.create({
     marginBottom: 12,
   },
   serviceName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h2,
     flex: 1,
   },
   cancelButton: {
@@ -37,9 +36,8 @@ export default StyleSheet.create({
     borderRadius: 20,
   },
   cancelButtonText: {
-    color: colors.textOnPrimary, 
-    fontWeight: '600',
-    fontSize: 12,
+    ...Typography.caption1,
+    color: colors.textOnPrimary,
   },
   detailRow: {
     flexDirection: 'row',
@@ -47,7 +45,7 @@ export default StyleSheet.create({
     marginBottom: 6,
   },
   detailText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
     marginLeft: 8,
   },
@@ -60,12 +58,10 @@ export default StyleSheet.create({
     borderTopColor: colors.border, 
   },
   priceLabel: {
-    fontSize: 14,
-    color: colors.textSecondary, 
+    ...Typography.label2,
+    color: colors.textSecondary,
   },
   priceValue: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: colors.text, 
+    ...Typography.label1,
   },
 });

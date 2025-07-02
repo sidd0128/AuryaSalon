@@ -22,6 +22,7 @@ import HeaderBar from '../components/HeaderBar';
 import SalonImageCarousel from '../components/SalonImageCarousel';
 import { colors } from '../theme/colors';
 import CustomerReviewScreen from './CustomerReviewScreen';
+import Typography from '../theme/Typography';
 
 type TabType = 'Services' | 'Photos' | 'About' | 'Reviews';
 type Props = NativeStackScreenProps<RootStackParamList, 'SalonInfo'>;
@@ -204,6 +205,7 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
 };
 
 
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -217,13 +219,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    ...Typography.h1,
     marginTop: 12,
-    color: colors.text,
   },
   location: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
     marginBottom: 12,
   },
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   statusText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.error,
     marginRight: 4,
   },
@@ -261,10 +261,8 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   offerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...Typography.h2,
     marginBottom: 8,
-    color: colors.text,
   },
   offerItem: {
     flexDirection: 'row',
@@ -273,7 +271,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   offerText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.text,
   },
   tabContainer: {
@@ -286,19 +284,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    ...Typography.h2,
+    fontSize: 20, // Override for exact match
     marginTop: 20,
     marginBottom: 8,
-    color: colors.text,
   },
   aboutText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
     marginBottom: 12,
   },
   amenityText: {
-    fontSize: 14,
+    ...Typography.label2,
     marginBottom: 4,
     color: colors.text,
   },
@@ -318,9 +315,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   buttonText: {
+    ...Typography.label1,
     color: colors.textOnPrimary,
     textAlign: 'center',
-    fontWeight: 'bold',
   },
   floatingChatButton: {
     position: 'absolute',
@@ -336,5 +333,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
 });
+
+
 
 export default SalonInfoScreen;

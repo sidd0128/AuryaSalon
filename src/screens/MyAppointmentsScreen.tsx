@@ -17,6 +17,8 @@ import { Booking, RootStackParamList } from '../navigation/types';
 import MyAppointmentBookingListItem from '../components/MyAppointmentBookingListItem';
 import CustomAlert from '../components/CustomAlert';
 import { colors } from '../theme/colors';
+import Typography from '../theme/Typography';
+
 import { AlertVariant } from '../components/CustomAlert/types';
 
 type Tab = 'upcoming' | 'history';
@@ -168,6 +170,7 @@ const MyAppointmentsScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -197,11 +200,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   tabText: {
-    fontSize: 16,
-    fontWeight: '600',
+    ...Typography.label1,
     color: colors.text,
   },
   activeTabText: {
+    ...Typography.label1,
     color: colors.textOnPrimary,
   },
   searchContainer: {
@@ -218,10 +221,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   searchInput: {
+    ...Typography.body,
     flex: 1,
     height: 44,
-    fontSize: 16,
-    color: colors.text,
   },
   bookingCard: {
     backgroundColor: colors.surface,
@@ -241,9 +243,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   serviceName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h2,
     flex: 1,
   },
   cancelButton: {
@@ -253,9 +253,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   cancelButtonText: {
+    ...Typography.caption1,
     color: colors.textOnPrimary,
-    fontWeight: '600',
-    fontSize: 12,
   },
   detailRow: {
     flexDirection: 'row',
@@ -263,7 +262,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   detailText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
     marginLeft: 8,
   },
@@ -276,13 +275,11 @@ const styles = StyleSheet.create({
     borderTopColor: colors.border,
   },
   priceLabel: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
   },
   priceValue: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.label1,
   },
   emptyContainer: {
     flex: 1,
@@ -291,9 +288,11 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   emptyText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
   },
 });
+
+
 
 export default MyAppointmentsScreen;

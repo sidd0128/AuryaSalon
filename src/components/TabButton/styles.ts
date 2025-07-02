@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   tab: {
@@ -13,13 +14,12 @@ export const styles = StyleSheet.create({
     borderBottomColor: colors.primary,
   },
   tabText: {
-    fontSize: 14,
-    fontWeight: '500',
+    ...Typography.label2,
     color: colors.textSecondary,
   },
   activeTabText: {
+    ...Typography.label1,
     color: colors.primary,
-    fontWeight: '600',
   },
   icon: {
     marginBottom: 4,

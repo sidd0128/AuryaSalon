@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export default StyleSheet.create({
   sectionHeader: {
@@ -15,9 +16,7 @@ export default StyleSheet.create({
     borderTopColor: colors.border,
   },
   sectionHeaderText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
+    ...Typography.h3,
     letterSpacing: 0.5,
   },
   separator: {
@@ -41,10 +40,9 @@ export default StyleSheet.create({
     margin: 16,
   },
   emptyText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
-    textAlign: 'center', 
+    textAlign: 'center',
     marginTop: 16,
-    lineHeight: 24,
   },
 });

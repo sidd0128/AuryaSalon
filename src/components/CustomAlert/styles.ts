@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   customContainer: {
@@ -14,11 +15,10 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
   },
   customTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...Typography.h2,
   },
   customMessage: {
-    fontSize: 16,
+    ...Typography.body,
     marginBottom: 16,
   },
   buttonContainer: {
@@ -35,10 +35,10 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   cancelButtonText: {
-    color: colors.text,
+    ...Typography.body,
   },
   buttonText: {
-    fontWeight: 'bold',
+    ...Typography.label1,
   },
   modalOverlay: {
     flex: 1,

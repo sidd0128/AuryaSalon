@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography'; // Import Typography
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,13 +15,11 @@ export const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   label: {
+    ...Typography.body,
     marginLeft: 12,
-    fontSize: 16,
-    color: colors.text,
     flex: 1,
   },
   selectedLabel: {
-    color: colors.primary,
-    fontWeight: '600',
+    ...Typography.link,
   },
 });

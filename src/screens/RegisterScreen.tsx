@@ -29,6 +29,7 @@ import Animated, {
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RootStackParamList } from '../navigation/types';
 import { colors } from '../theme/colors';
+import Typography from '../theme/Typography';
 
 const { width, height } = Dimensions.get('window');
 
@@ -172,6 +173,9 @@ const RegisterScreen = () => {
   );
 };
 
+
+
+
 const styles = StyleSheet.create({
   container: {
     paddingBottom: 40,
@@ -196,9 +200,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   heading: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: colors.text,
+    ...Typography.h1,
     textAlign: 'center',
     marginBottom: 25,
   },
@@ -216,14 +218,12 @@ const styles = StyleSheet.create({
     height: 52,
   },
   countryCode: {
-    fontSize: 16,
-    color: colors.text,
+    ...Typography.body,
     marginRight: 10,
   },
   input: {
+    ...Typography.body,
     flex: 1,
-    color: colors.text,
-    fontSize: 16,
     letterSpacing: 0.5,
   },
   button: {
@@ -240,13 +240,11 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   buttonText: {
-    fontSize: 18,
-    fontWeight: '600',
+    ...Typography.h2,
     color: colors.textOnPrimary,
   },
   termsText: {
-    fontSize: 12,
-    color: colors.text,
+    ...Typography.caption1,
     textAlign: 'center',
     marginBottom: 8,
     paddingHorizontal: 20,
@@ -256,17 +254,18 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
   supportText: {
-    fontSize: 12,
+    ...Typography.caption1,
     textAlign: 'center',
     marginBottom: 8,
-    color: colors.text,
   },
   guestText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.secondary,
     textAlign: 'center',
     marginBottom: 10,
   },
 });
+
+
 
 export default RegisterScreen;

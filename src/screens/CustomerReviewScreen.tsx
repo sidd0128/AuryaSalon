@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
 import ReviewCard, { ReviewCardProps } from '../components/ReviewCard';
 import { colors } from '../theme/colors';
+import Typography from '../theme/Typography';
+
 
 type StoredReview = ReviewCardProps & { id: string; timestamp: number };
 
@@ -136,22 +138,23 @@ const CustomerReviewScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background, paddingBottom: 20 },
   heading: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...Typography.h2,
     marginBottom: 12,
     paddingHorizontal: 16,
     paddingTop: 12,
-    color: colors.text,
   },
   emptyText: {
+    ...Typography.label2,
     textAlign: 'center',
-    fontSize: 14,
     color: colors.textSecondary,
     paddingVertical: 40,
   },
 });
+
+
 
 export default CustomerReviewScreen;

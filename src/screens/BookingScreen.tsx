@@ -21,6 +21,7 @@ import { useCart } from '../context/CartContext';
 import { colors } from '../theme/colors';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
+import Typography from '../theme/Typography';
 
 type BookingScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Booking'>;
 type BookingScreenRouteProp = RouteProp<RootStackParamList, 'Booking'>;
@@ -264,24 +265,22 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background 
   },
   header: { 
-    fontSize: 26, 
-    fontWeight: 'bold', 
+    ...Typography.h1,
     marginBottom: 20, 
     textAlign: 'center', 
-    color: colors.starlight 
+    color: colors.starlight,
   },
   label: { 
-    fontSize: 16, 
-    fontWeight: '600', 
+    ...Typography.h3,
     marginTop: 12, 
-    color: colors.text 
   },
   value: { 
-    fontSize: 16, 
+    ...Typography.body,
     marginBottom: 8, 
-    color: colors.textSecondary 
+    color: colors.textSecondary,
   },
   input: {
+    ...Typography.body,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 6,
@@ -301,7 +300,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   dateButtonText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.text,
   },
   card: {
@@ -313,12 +312,10 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   cardTitle: {
-    fontWeight: '700',
-    fontSize: 16,
-    color: colors.text,
+    ...Typography.h3,
   },
   cardDetail: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
     marginTop: 2,
   },
@@ -338,14 +335,16 @@ const styles = StyleSheet.create({
     borderColor: colors.secondary,
   },
   slotText: {
+    ...Typography.label1,
     color: colors.text,
-    fontWeight: '600',
   },
   slotTextSelected: {
+    ...Typography.label1,
     color: colors.textOnPrimary,
     fontWeight: '700',
   },
 });
+
 
 
 export default BookingScreen;

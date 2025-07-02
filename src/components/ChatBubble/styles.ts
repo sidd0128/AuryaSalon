@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   bubble: {
@@ -17,8 +18,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   text: {
-    fontSize: 16,
-    color: colors.text,
+    ...Typography.body,
   },
   image: {
     width: 150,

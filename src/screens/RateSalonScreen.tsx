@@ -27,6 +27,8 @@ import { validateReviewFields } from '../helpers/validateReviewFields';
 import { buildReviewPayload } from '../utils/buildReviewPayload';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
+import Typography from '../theme/Typography';
+
 
 type RateSalonNavigationProp = NativeStackNavigationProp<RootStackParamList, 'RateSalon'>;
 
@@ -275,14 +277,13 @@ const RateSalonScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 16, paddingTop: 16 },
   scrollContent: { paddingBottom: 40 },
   label: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
+    ...Typography.h3,
     marginBottom: 8,
     marginTop: 16,
   },
@@ -304,11 +305,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   genderButtonText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
-    fontWeight: '500',
   },
   genderButtonTextSelected: {
+    ...Typography.body,
     color: colors.textOnPrimary,
     fontWeight: 'bold',
   },
@@ -322,6 +323,7 @@ const styles = StyleSheet.create({
   },
   commentSection: { marginTop: 16 },
   commentInput: {
+    ...Typography.body,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
@@ -329,7 +331,6 @@ const styles = StyleSheet.create({
     padding: 12,
     height: 120,
     textAlignVertical: 'top',
-    fontSize: 16,
     color: colors.text,
   },
   submitButton: {
@@ -340,13 +341,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   submitButtonText: {
+    ...Typography.h2,
     color: colors.textOnPrimary,
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   pickerHeader: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    ...Typography.h2,
     padding: 16,
     textAlign: 'center',
     borderBottomWidth: 1,
@@ -360,19 +359,20 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
   },
   pickerItemText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.text,
   },
   emptyText: {
+    ...Typography.label2,
     textAlign: 'center',
     marginTop: 20,
-    fontSize: 14,
     color: colors.textSecondary,
     fontStyle: 'italic',
   },
   genderHeader: {
-    fontSize: 15,
+    ...Typography.label1,
     fontWeight: 'bold',
+    fontSize: 15, // Override for exact match
     color: colors.text,
     marginTop: 10,
     marginBottom: 4,
@@ -386,9 +386,11 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   selectedServiceText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.text,
   },
 });
+
+
 
 export default RateSalonScreen;

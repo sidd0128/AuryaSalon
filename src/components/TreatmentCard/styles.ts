@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   container: {
@@ -24,12 +25,10 @@ export const styles = StyleSheet.create({
     flex: 1 
   },
   name: { 
-    fontSize: 16, 
-    color: colors.text, 
-    fontWeight: '500',
+    ...Typography.body,
   },
   price: { 
-    fontSize: 14, 
+    ...Typography.label2,
     color: colors.textSecondary,
     marginTop: 2,
   },
@@ -40,8 +39,8 @@ export const styles = StyleSheet.create({
     minWidth: 60,
   },
   addText: { 
+    ...Typography.label1,
     color: colors.textOnPrimary,
-    fontWeight: 'bold',
     textAlign: 'center',
   },
 });

@@ -18,6 +18,7 @@ import { useCart } from '../context/CartContext';
 import { colors } from '../theme/colors';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
+import Typography from '../theme/Typography';
 
 type AlertInfo = {
   variant: AlertVariant;
@@ -209,6 +210,7 @@ const TreatmentsScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'Tre
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: { 
     flex: 1, 
@@ -250,10 +252,11 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.primary,
   },
   genderButtonText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
   },
   genderButtonTextSelected: {
+    ...Typography.body,
     color: colors.primary,
     fontWeight: 'bold',
   },
@@ -274,9 +277,7 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.border,
   },
   sectionHeaderText: { 
-    fontSize: 16, 
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h3,
   },
   treatmentItem: {
     flexDirection: 'row',
@@ -289,19 +290,17 @@ const styles = StyleSheet.create({
     flex: 1 
   },
   treatmentName: { 
-    fontSize: 14, 
-    fontWeight: '500', 
+    ...Typography.label2,
     marginBottom: 4,
-    color: colors.text,
   },
   treatmentPrice: { 
-    fontSize: 12, 
+    ...Typography.caption2,
     color: colors.textSecondary,
   },
   treatmentDuration: { 
-    fontSize: 12, 
-    color: colors.textSecondary, 
-    marginTop: 2 
+    ...Typography.caption2,
+    color: colors.textSecondary,
+    marginTop: 2,
   },
   addButton: {
     backgroundColor: colors.primary,
@@ -313,9 +312,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.error,
   },
   addButtonText: {
+    ...Typography.caption1,
     color: colors.textOnPrimary,
-    fontWeight: 'bold',
-    fontSize: 12,
   },
   separator: { 
     height: 1, 

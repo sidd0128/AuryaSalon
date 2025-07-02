@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   button: {
@@ -16,8 +17,6 @@ export const styles = StyleSheet.create({
     marginRight: 8,
   },
   label: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '500',
+    ...Typography.label2,
   },
 });

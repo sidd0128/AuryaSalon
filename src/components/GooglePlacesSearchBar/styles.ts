@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   container: { 
@@ -7,13 +8,13 @@ export const styles = StyleSheet.create({
     maxHeight: 300 
   },
   input: {
+    ...Typography.body,
     height: 42,
     borderColor: colors.border,
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 10,
     backgroundColor: colors.surface,
-    color: colors.text,
   },
   list: {
     marginTop: 4,
@@ -34,11 +35,11 @@ export const styles = StyleSheet.create({
     borderLeftColor: colors.primary,
   },
   itemText: {
-    color: colors.text,
+    ...Typography.body,
   },
   selectedText: {
+    ...Typography.label1,
     color: colors.primary,
-    fontWeight: '600',
   },
   errorContainer: {
     padding: 8,
@@ -49,7 +50,7 @@ export const styles = StyleSheet.create({
     borderColor: colors.error,
   },
   errorText: {
+    ...Typography.caption2,
     color: colors.error,
-    fontSize: 12,
   },
 });

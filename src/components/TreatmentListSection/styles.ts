@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export default StyleSheet.create({
   sectionHeader: {
@@ -11,9 +12,7 @@ export default StyleSheet.create({
     borderBottomColor: colors.border,  
   },
   sectionHeaderText: { 
-    fontSize: 16, 
-    fontWeight: 'bold',
-    color: colors.text, 
+    ...Typography.h3,
   },
   separator: { 
     height: 1, 

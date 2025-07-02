@@ -1,18 +1,13 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import styles from './styles';
+import { Service } from '../../navigation/types';
 
-// Explicit type for category item
-export interface Category {
-  service_id: string;
-  name: string;
-  url: string;
-}
 
 interface Props {
-  categories: Category[];
+  categories: Service[];
   selectedCategoryId?: string;
-  onSelectCategory: (category: Category) => void;
+  onSelectCategory: (category: Service) => void;
 }
 
 const VerticalCategoryList: React.FC<Props> = ({

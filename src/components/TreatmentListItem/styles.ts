@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export default StyleSheet.create({
   treatmentItem: {
@@ -15,17 +16,15 @@ export default StyleSheet.create({
     flex: 1,
   },
   treatmentName: {
-    fontSize: 14,
-    fontWeight: '500',
+    ...Typography.label2,
     marginBottom: 4,
-    color: colors.text,
   },
   treatmentPrice: {
-    fontSize: 12,
+    ...Typography.caption2,
     color: colors.textSecondary,
   },
   treatmentDuration: {
-    fontSize: 12,
+    ...Typography.caption2,
     color: colors.textSecondary,
   },
   addButton: {
@@ -36,9 +35,8 @@ export default StyleSheet.create({
     minWidth: 80,
   },
   addButtonText: {
+    ...Typography.caption1,
     color: colors.textOnPrimary,
-    fontWeight: 'bold',
-    fontSize: 12,
     textAlign: 'center',
   },
   removeButton: {
@@ -49,9 +47,8 @@ export default StyleSheet.create({
     minWidth: 80,
   },
   removeButtonText: {
+    ...Typography.caption1,
     color: colors.textOnPrimary,
-    fontWeight: 'bold',
-    fontSize: 12,
     textAlign: 'center',
   },
 });

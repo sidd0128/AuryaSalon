@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   container: {
@@ -10,10 +11,10 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   title: {
-    flex: 1,
-    fontSize: 16,
-    marginLeft: 12,
+    ...Typography.body,
     color: colors.primary,
+    flex: 1,
+    marginLeft: 12,
   },
   imageIcon: {
     width: 24,

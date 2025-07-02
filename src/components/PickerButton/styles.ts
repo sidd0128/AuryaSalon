@@ -1,14 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   container: {
     marginBottom: 16,
   },
   label: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
+    ...Typography.h3,
     marginBottom: 8,
   },
   button: {
@@ -26,10 +25,10 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.border,
   },
   valueText: {
-    fontSize: 16,
-    color: colors.text,
+    ...Typography.body,
   },
   placeholderText: {
+    ...Typography.body,
     color: colors.placeholder,
   },
 });

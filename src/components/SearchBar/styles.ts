@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   searchBar: {
@@ -17,10 +18,9 @@ export const styles = StyleSheet.create({
     marginRight: 8,
   },
   searchInput: { 
+    ...Typography.body,
     flex: 1, 
     height: 40, 
-    fontSize: 16, 
-    color: colors.text,
     includeFontPadding: false,
   },
 });

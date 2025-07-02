@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   container: { 
@@ -26,10 +27,8 @@ export const styles = StyleSheet.create({
     borderColor: colors.border,
   },
   categoryName: { 
-    fontSize: 16, 
-    fontWeight: '600', 
+    ...Typography.h3,
     flex: 1,
-    color: colors.text,
   },
   expandIcon: {
     marginLeft: 8,

@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   reviewContainer: {
@@ -19,16 +20,14 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h3,
   },
   starsContainer: {
     flexDirection: 'row',
     marginVertical: 2,
   },
   comment: {
-    fontSize: 12,
+    ...Typography.caption2,
     color: colors.textSecondary,
   },
 });

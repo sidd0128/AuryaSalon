@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   card: {
@@ -30,6 +31,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bannerText: {
+    ...Typography.label2,
     color: colors.textOnPrimary,
     fontWeight: 'bold',
     fontSize: 13,
@@ -39,12 +41,11 @@ export const styles = StyleSheet.create({
     position: 'relative',
   },
   name: {
-    fontSize: 16,
-    fontWeight: '700',
+    ...Typography.h3,
     marginBottom: 4,
-    color: colors.text,
   },
   location: {
+    ...Typography.body,
     color: colors.textSecondary,
     marginBottom: 4,
   },
@@ -53,12 +54,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   metaText: {
-    fontSize: 13,
+    ...Typography.label2,
     color: colors.textSecondary,
+    fontSize: 13,
   },
   dot: {
-    fontSize: 13,
+    ...Typography.label2,
     color: colors.textSecondary,
+    fontSize: 13,
     marginHorizontal: 6,
   },
   ratingBadge: {
@@ -75,13 +78,15 @@ export const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   star: {
+    ...Typography.label2,
     color: colors.primary,
     fontSize: 14,
   },
   ratingText: {
+    ...Typography.label2,
     marginLeft: 4,
-    fontWeight: '600',
     fontSize: 13,
+    fontWeight: '600',
     color: colors.text,
   },
 });

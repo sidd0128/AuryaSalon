@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   header: {
@@ -17,16 +18,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   locationText: {
-    fontSize: 16,
-    color: colors.primary,
+    ...Typography.link,
     marginLeft: 4,
     maxWidth: 150,
   },
   titleText: {
+    ...Typography.h2,
     flex: 1,
-    fontSize: 18,
-    fontWeight: '600',
-    color: colors.text,
     textAlign: 'center',
     marginHorizontal: 16,
   },
@@ -56,8 +54,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   badgeText: {
+    ...Typography.bottomNavActive,
     color: colors.textOnPrimary,
-    fontSize: 10,
-    fontWeight: 'bold',
   },
 });

@@ -14,6 +14,7 @@ import { CartItem, RootStackParamList } from '../navigation/types';
 import { colors } from '../theme/colors';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
+import Typography from '../theme/Typography';
 
 type AlertInfo = {
   variant: AlertVariant;
@@ -160,6 +161,7 @@ const CartScreen: React.FC<NativeStackScreenProps<RootStackParamList, 'Cart'>> =
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -173,13 +175,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   title: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: colors.text,
+    ...Typography.h1,
     marginBottom: 4,
   },
   subtitle: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
   },
   listContent: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
     textAlign: 'center',
   },
@@ -211,22 +211,19 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   itemName: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: colors.text,
+    ...Typography.h2,
     marginBottom: 4,
   },
   itemDetails: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.textSecondary,
   },
   removeButton: {
     padding: 8,
   },
   removeText: {
+    ...Typography.label2,
     color: colors.error,
-    fontWeight: '500',
-    fontSize: 14,
   },
   footer: {
     marginTop: 'auto',
@@ -246,31 +243,28 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   summaryLabel: {
-    fontSize: 16,
+    ...Typography.body,
     color: colors.textSecondary,
   },
   summaryValue: {
-    fontSize: 16,
-    fontWeight: '500',
+    ...Typography.label2,
     color: colors.text,
   },
   summaryPrice: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: colors.text,
+    ...Typography.h2,
   },
   couponContainer: {
     flexDirection: 'row',
     marginBottom: 16,
   },
   couponInput: {
+    ...Typography.body,
     flex: 1,
     backgroundColor: colors.surface,
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 10,
     padding: 14,
-    fontSize: 16,
     marginRight: 12,
     color: colors.text,
   },
@@ -281,9 +275,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   couponButtonText: {
+    ...Typography.label1,
     color: colors.textOnPrimary,
-    fontWeight: '600',
-    fontSize: 16,
   },
   actionButtonsContainer: {
     flexDirection: 'row',
@@ -307,15 +300,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   clearButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
+    ...Typography.label1,
     color: colors.error,
   },
   proceedButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
+    ...Typography.label1,
     color: colors.textOnPrimary,
   },
 });
+
+
 
 export default CartScreen;

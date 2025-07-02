@@ -21,6 +21,7 @@ import CustomAlert from '../components/CustomAlert';
 import { colors } from '../theme/colors';
 import { AlertVariant } from '../components/CustomAlert/types';
 import { reverseGeocode } from '../helpers/reverseGeocode';
+import Typography from '../theme/Typography';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ChangeLocation'>;
 
@@ -250,6 +251,7 @@ const ChangeLocationScreen: React.FC<Props> = ({ navigation }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 16, paddingTop: 16, backgroundColor: colors.background },
@@ -264,9 +266,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h2,
     textAlign: 'center',
     flex: 1,
   },
@@ -278,22 +278,19 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   currentLocationText: {
+    ...Typography.label1,
     color: colors.textOnPrimary,
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   currentLocationSubText: {
+    ...Typography.caption1,
     color: colors.textOnPrimary,
-    fontSize: 12,
   },
   disabledButton: {
     opacity: 0.7,
   },
   recentSearchesTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    ...Typography.h3,
     marginBottom: 8,
-    color: colors.text,
   },
   recentItem: {
     flexDirection: 'row',
@@ -301,10 +298,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   recentText: {
-    fontSize: 14,
+    ...Typography.label2,
     marginLeft: 8,
-    color: colors.text,
   },
 });
+
+
 
 export default ChangeLocationScreen;

@@ -17,6 +17,7 @@ import ChatBubble from '../components/ChatBubble';
 import { useChatMessages } from '../hooks/useChatMessages';
 import { colors } from '../theme/colors';
 import { useImagePickerModal } from '../hooks/useImagePickerModal';
+import Typography from '../theme/Typography';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Chat'>;
 
@@ -93,6 +94,7 @@ const ChatScreen: React.FC<Props> = ({ route, navigation }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -110,6 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   input: {
+    ...Typography.body,
     flex: 1,
     marginHorizontal: 8,
     paddingVertical: 8,
@@ -128,5 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+
 
 export default ChatScreen;

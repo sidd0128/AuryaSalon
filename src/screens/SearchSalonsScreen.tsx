@@ -21,6 +21,7 @@ import { useBottomSheetModal } from '../hooks/useBottomSheetModal';
 
 import { RootStackParamList, Salon, Booking } from '../navigation/types';
 import { colors } from '../theme/colors';
+import Typography from '../theme/Typography';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'SearchSalons'>;
 type RoutePropType = RouteProp<RootStackParamList, 'SearchSalons'>;
@@ -137,6 +138,7 @@ const SearchSalonsScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
@@ -182,16 +184,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   cardText: {
+    ...Typography.body,
     flex: 1,
-    fontSize: 16,
-    fontWeight: '500',
     color: colors.primary,
     marginHorizontal: 12,
   },
   emptyText: {
+    ...Typography.body,
     textAlign: 'center',
     marginTop: 20,
-    fontSize: 16,
     color: colors.textSecondary,
   },
 });

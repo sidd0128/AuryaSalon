@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography'; // Import Typography
 
 export const styles = StyleSheet.create({
   container: { marginBottom: 16 },
-  label: { fontWeight: '600', marginBottom: 4, color: colors.primary },
+  label: {
+    ...Typography.label1,
+    color: colors.primary, // Override for primary color
+    marginBottom: 4,
+  },
   optionsRow: { flexDirection: 'row', marginBottom: 8 },
   option: {
     padding: 8,
@@ -15,9 +20,11 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   optionText: {
+    ...Typography.body,
     color: colors.primary,
   },
   selectedText: {
+    ...Typography.label1,
     color: '#fff',
   },
   unisexToggle: {
@@ -26,8 +33,9 @@ export const styles = StyleSheet.create({
     marginTop: 8,
   },
   unisexText: {
-    marginLeft: 8,
+    ...Typography.body,
     color: colors.primary,
+    marginLeft: 8,
   },
   resetButton: {
     marginTop: 16,
@@ -37,7 +45,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   resetButtonText: {
+    ...Typography.label1,
     color: '#fff',
-    fontWeight: '600',
   },
 });

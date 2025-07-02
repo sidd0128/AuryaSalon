@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
+import Typography from '../../theme/Typography';
 
 export const styles = StyleSheet.create({
   bottomNav: {
@@ -14,7 +15,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   navText: { 
-    fontSize: 12, 
-    color: colors.textSecondary,
+    ...Typography.bottomNavInactive,
   },
 });

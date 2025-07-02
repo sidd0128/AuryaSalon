@@ -7,6 +7,8 @@ import { RootStackParamList } from '../navigation/types';
 import { colors } from '../theme/colors';
 import HeaderBar from '../components/HeaderBar';
 import ListItem from '../components/MyAccountListItem';
+import Typography from '../theme/Typography';
+
 
 const MyAccountScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -81,6 +83,7 @@ const MyAccountScreen: React.FC = () => {
   );
 };
 
+
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: colors.background },
   container: {
@@ -108,17 +111,14 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   userInitialsText: {
+    ...Typography.h2,
     color: colors.textOnPrimary,
-    fontWeight: 'bold',
-    fontSize: 18,
   },
   userName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.text,
+    ...Typography.h3,
   },
   editText: {
-    fontSize: 14,
+    ...Typography.label2,
     color: colors.primary,
   },
   savingsBanner: {
@@ -128,25 +128,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   savingsText: {
+    ...Typography.label2,
     color: colors.textOnPrimary,
-    fontSize: 14,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    ...Typography.h3,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
     backgroundColor: colors.surface,
-    color: colors.text,
-},
-versionText: {
-    fontSize: 12,
+  },
+  versionText: {
+    ...Typography.caption1,
     color: colors.textSecondary,
     textAlign: 'center',
     padding: 16,
-},
+  },
 });
+
+
 
 export default MyAccountScreen;
