@@ -7,6 +7,7 @@ import { RootStackParamList } from '../../navigation/types';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TimeSlots from '../../components/TimeSlots';
 import HeaderBar from '../../components/HeaderBar';
+import { renderStars } from '../../utils/renderStars';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SpecialistProfileScreen'>;
 
@@ -50,9 +51,12 @@ const SpecialistProfileScreen: React.FC<Props> = ({ route, navigation }) => {
         {/* Specialty and Experience Card */}
         <View style={[styles.specialtyCard, { marginTop: 0 }]}>
           <Text style={styles.specialtyText}>Specialty: {profile.specialty}</Text>
-          <Text style={styles.experienceText}>
-            Experience: {profile.experience} {profile.experience === 1 ? 'year' : 'years'}
-          </Text>
+          <View style={styles.experienceRow}>
+            <Text style={styles.experienceText}>
+                Experience: {profile.experience} {profile.experience === 1 ? 'year' : 'years'}
+            </Text>
+            {renderStars(profile.rating.toString())}
+            </View>
         </View>
 
         {/* Availability Time Slots */}

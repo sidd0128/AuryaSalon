@@ -6,32 +6,11 @@ import { colors } from '../../theme/colors';
 import BaseCard from '../BaseCard.tsx';
 import { Review } from '../../navigation/types.ts';
 import { getRelativeTime } from '../../utils/getRelativeTime.ts';
+import { renderStars } from '../../utils/renderStars.tsx';
 
 
 
 const ReviewCard: React.FC<Review> = ({ image, name, rating, comment, timestamp }) => {
-  const renderStars = (ratingStr: string) => {
-    const ratingNum = parseFloat(ratingStr);
-    const fullStars = Math.floor(ratingNum);
-    const hasHalfStar = ratingNum - fullStars >= 0.5;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-    const stars = [];
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<Icon key={`full-${i}`} name="star" size={16} color={colors.starLight} />);
-    }
-
-    if (hasHalfStar) {
-      stars.push(<Icon key="half" name="star-half-full" size={16} color={colors.starLight} />);
-    }
-
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Icon key={`empty-${i}`} name="star-o" size={16} color={colors.starLight} />);
-    }
-
-    return <View style={styles.starsContainer}>{stars}</View>;
-  };
 
   return (
     <BaseCard>

@@ -118,4 +118,15 @@ export const styles = StyleSheet.create({
     color: colors.textOnSecondary,
     textAlign: 'center',
   },
+  experienceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  
+  ratingText: {
+    fontFamily: fonts.Muli_SemiBold,
+    fontSize: fontSizes.base,
+    color: colors.text,
+  },
 });
