@@ -1,3 +1,5 @@
+import { SpecialistProfile } from "../screens/SpecialistProfileScreen/types";
+
 // ---------- Navigation Types ----------
 export type RootStackParamList = {
   Splash: undefined;  
@@ -18,9 +20,20 @@ export type RootStackParamList = {
   MyAccount: undefined;
   CustomerReview: undefined;
   RateSalon: undefined;
+  SpecialistProfileScreen: { specialist: SpecialistProfile };
 };
 
 // ---------- Core Models ----------
+
+export interface Specialist {
+  id: string;
+  name: string;
+  specialty: string;
+  rating: number;
+  experience: string;
+  imageKey: string;
+  reviews: Review[];
+}
 
 export interface Salon {
   id: string;
@@ -40,6 +53,7 @@ export interface Salon {
     amenities: string[];
     address: string;
   };
+  specialists: Specialist[];
 
   rating: number;
 
@@ -50,6 +64,7 @@ export interface Salon {
   hasDiscount?: boolean;
 
   isUnisex?: boolean;
+  reviews?: Review[];
 }
 
 
@@ -110,10 +125,9 @@ export interface Booking {
 
 export interface Review {
   id: string;
-  salonId: string;
-  salonName: string;
-  serviceName: string;
-  rating: number; // e.g., 1–5
-  review: string;
-  date: string; // ISO date
+  timestamp: number;
+  image: any;
+  name: string;
+  rating: string;
+  comment: string;
 }

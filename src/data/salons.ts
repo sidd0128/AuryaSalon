@@ -1,4 +1,4 @@
-import { Salon } from '../navigation/types';
+import { Review, Salon } from '../navigation/types';
 
 
 
@@ -75,6 +75,57 @@ const ADDRESSES = [
   'Pacific Coast Hwy, Malibu, CA 90265',
 ];
 
+const SPECIALIST_NAMES = [
+  'Dr. Priya Sharma', 'Dr. Ananya Patel', 'Dr. Rohan Kapoor', 
+  'Dr. Neha Gupta', 'Dr. Arjun Singh', 'Dr. Meera Joshi',
+  'Dr. Vikram Malhotra', 'Dr. Sunita Reddy', 'Dr. Karan Verma',
+  'Dr. Shreya Choudhary', 'Dr. Rajat Khanna'
+];
+
+const SPECIALTIES = [
+  'Dermatologist', 'Cosmetologist', 'Hair Specialist',
+  'Aesthetic Physician', 'Laser Specialist', 'Spa Therapist',
+  'Makeup Artist', 'Massage Therapist', 'Nail Technician',
+  'Anti-Aging Expert', 'Weight Loss Consultant'
+];
+
+const EXPERIENCE = [
+  '5 years', '7 years', '10 years', '12 years', '15 years',
+  '8 years', '6 years', '9 years', '11 years', '14 years'
+];
+
+const SPECIALIST_IMAGES = [
+  'specialist_one', 'specialist_two', 'specialist_three', 
+  'specialist_four', 'specialist_five', 'specialist_six',
+];
+
+const SAMPLE_REVIEWS: Review[] = [
+  {
+    id: 'r1',
+    image: require('../assets/images/profile.png'),
+    name: 'Alice Johnson',
+    rating: '4.5',
+    comment: 'Excellent specialist, very professional and caring.',
+    timestamp: new Date('2025-07-01T14:20:00Z').getTime(),
+  },
+  {
+    id: 'r2',
+    image: require('../assets/images/profile.png'),
+    name: 'Bob Smith',
+    rating: '4.0',
+    comment: 'Good experience, would recommend to friends.',
+    timestamp: new Date('2025-06-15T09:10:00Z').getTime(),
+  },
+  {
+    id: 'r3',
+    image: require('../assets/images/profile.png'),
+    name: 'Catherine Lee',
+    rating: '5.0',
+    comment: 'Highly skilled and friendly service!',
+    timestamp: new Date('2025-06-25T18:45:00Z').getTime(),
+  },
+];
+
 
 const TYPES = ['unisex', 'men', 'women'] as const;
 
@@ -82,6 +133,17 @@ export const salons: Salon[] = Array.from({ length: 11 }, (_, i) => {
   const photoCount = getRandomFrom([1, 2, 3, 5, 6, 8]);
   const priceLevel = getRandomFrom(['low', 'medium', 'high'] as const);
   const type = getRandomFrom(TYPES);
+
+  const specialistCount = getRandomFrom([2, 3, 4]);
+  const specialists = Array.from({ length: specialistCount }, (_, j) => ({
+    id: `spc-${i}-${j}`,
+    name: SPECIALIST_NAMES[(i + j) % SPECIALIST_NAMES.length],
+    specialty: SPECIALTIES[(i + j) % SPECIALTIES.length],
+    rating: +(4.0 + Math.random() * 1.0).toFixed(1),
+    experience: EXPERIENCE[(i + j) % EXPERIENCE.length],
+    imageKey: SPECIALIST_IMAGES[(i + j) % SPECIALIST_IMAGES.length],
+    reviews: SAMPLE_REVIEWS.slice(0, Math.floor(Math.random() * SAMPLE_REVIEWS.length) + 1)
+  }));
 
   return {
     id: (i + 1).toString(),
@@ -112,5 +174,6 @@ export const salons: Salon[] = Array.from({ length: 11 }, (_, i) => {
       ),
       address: ADDRESSES[i],
     },
+    specialists,
   };
 });

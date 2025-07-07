@@ -23,8 +23,10 @@ import SalonImageCarousel from '../components/SalonImageCarousel';
 import { colors } from '../theme/colors';
 import CustomerReviewScreen from './CustomerReviewScreen';
 import Typography from '../theme/typography';
+import SpecialistCard from '../components/SpecialistCard';
+import { mapSpecialistToProfile } from '../helpers/mapSpecialistToProfile';
 
-type TabType = 'Services' | 'Photos' | 'About' | 'Reviews';
+type TabType = 'Services' | 'Photos' | 'About' | 'Reviews' | 'Specialists';
 type Props = NativeStackScreenProps<RootStackParamList, 'SalonInfo'>;
 
 
@@ -66,7 +68,7 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
     });
   };
 
-  const tabs: TabType[] = ['Services', 'Photos', 'About', 'Reviews'];
+  const tabs: TabType[] = ['Services', 'Photos', 'About', 'Reviews', 'Specialists'];
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -109,14 +111,19 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
                 ellipsizeMode="clip"
                 onLayout={(e) => setTextWidth(e.nativeEvent.layout.width)}
               >
-                Get 40% OFF via Salon Veda - 35% Discount + 5% Cashback
+                Get 40% OFF via Aurya salons - 35% Discount + 5% Cashback
               </Text>
             </Animated.View>
           </View>
 
           <Text style={styles.offerTitle}>Offers available for you</Text>
 
-          <View style={styles.tabContainer}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.tabScrollContent}
+            style={styles.tabContainer}
+          >
             {tabs.map((tab) => (
               <TabButton
                 key={tab}
@@ -125,7 +132,8 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
                 onPress={() => setActiveTab(tab)}
               />
             ))}
-          </View>
+          </ScrollView>
+
 
           {activeTab === 'Services' && (
             <FlatList
@@ -174,11 +182,39 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
             </View>
           )}
 
-{activeTab === 'Reviews' && (
-  <View style={{ marginTop: 12 }}>
-    <CustomerReviewScreen />
-  </View>
-)}
+            {activeTab === 'Reviews' && (
+              <View style={{ marginTop: 12 }}>
+                <CustomerReviewScreen />
+              </View>
+            )}
+
+            {activeTab === 'Specialists' && (
+              <FlatList
+                data={salon.specialists || []}
+                keyExtractor={(item) => item.id}
+                numColumns={2}
+                renderItem={({ item }) => (
+                  <SpecialistCard 
+                    specialist={item} 
+                    onPress={() => navigation.navigate('SpecialistProfileScreen', { specialist: mapSpecialistToProfile(item)})}
+                  />
+                )}
+                columnWrapperStyle={{
+                  justifyContent: 'space-between',
+                  paddingHorizontal: 8,
+                  marginBottom: 16,
+                }}
+                contentContainerStyle={{
+                  paddingBottom: 20,
+                  paddingTop: 8,
+                }}
+                ListEmptyComponent={
+                  <View style={styles.emptyContainer}>
+                    <Text style={styles.emptyText}>No specialists available</Text>
+                  </View>
+                }
+              />
+            )}
         </ScrollView>
 
         <View style={styles.buttonContainer}>
@@ -275,17 +311,22 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   tabContainer: {
-    flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
     marginBottom: 12,
+  },
+  
+  tabScrollContent: {
+    flexDirection: 'row',
+    paddingHorizontal: 10,
+    alignItems: 'center',
   },
   row: {
     justifyContent: 'space-between',
   },
   sectionTitle: {
     ...Typography.h2,
-    fontSize: 20, // Override for exact match
+    fontSize: 20,
     marginTop: 20,
     marginBottom: 8,
   },
@@ -331,6 +372,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: colors.textSecondary,
   },
 });
 

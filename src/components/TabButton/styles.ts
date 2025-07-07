@@ -4,8 +4,8 @@ import Typography from '../../theme/typography';
 
 export const styles = StyleSheet.create({
   tab: {
-    flex: 1,
     paddingVertical: 12,
+    paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -25,3 +25,4 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
   },
 });
+

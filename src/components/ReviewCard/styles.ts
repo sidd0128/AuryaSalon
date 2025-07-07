@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     alignItems: 'center',
-    borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
   profileImage: {
@@ -29,5 +28,10 @@ export const styles = StyleSheet.create({
   comment: {
     ...Typography.caption2,
     color: colors.textSecondary,
+  },
+  timestamp: {
+    fontSize: 12,
+    color: colors.textSecondary,
+    marginTop: 4,
   },
 });

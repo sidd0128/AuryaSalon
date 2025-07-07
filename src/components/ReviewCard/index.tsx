@@ -4,15 +4,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from './styles';
 import { colors } from '../../theme/colors';
 import BaseCard from '../BaseCard.tsx';
+import { Review } from '../../navigation/types.ts';
+import { getRelativeTime } from '../../utils/getRelativeTime.ts';
 
-export interface ReviewCardProps {
-  image: any;
-  name: string;
-  rating: string;
-  comment: string;
-}
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ image, name, rating, comment }) => {
+
+const ReviewCard: React.FC<Review> = ({ image, name, rating, comment, timestamp }) => {
   const renderStars = (ratingStr: string) => {
     const ratingNum = parseFloat(ratingStr);
     const fullStars = Math.floor(ratingNum);
@@ -44,6 +41,11 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ image, name, rating, comment })
           <Text style={styles.name}>{name}</Text>
           {renderStars(rating)}
           <Text style={styles.comment}>{comment}</Text>
+          {timestamp && (
+          <Text style={styles.timestamp}>
+            {getRelativeTime(timestamp)}
+          </Text>
+)}
         </View>
       </View>
     </BaseCard>

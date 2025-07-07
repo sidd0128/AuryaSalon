@@ -21,7 +21,7 @@ const SalonCard: React.FC<Props> = ({ salon, onPress }) => {
       <View style={styles.imageWrapper}>
         <Image source={imageSource} style={[styles.image, { width: screenWidth - 16 }]} />
         <View style={styles.banner}>
-          <Text style={styles.bannerText}>Get 40% OFF via Salon Veda</Text>
+          <Text style={styles.bannerText}>Get 40% OFF via Aurya salons</Text>
         </View>
       </View>
 

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useIsFocused } from '@react-navigation/native';
-import ReviewCard, { ReviewCardProps } from '../components/ReviewCard';
+import ReviewCard from '../components/ReviewCard';
 import { colors } from '../theme/colors';
 import Typography from '../theme/typography';
+import { Review } from '../navigation/types';
 
 
-type StoredReview = ReviewCardProps & { id: string; timestamp: number };
+type StoredReview = Review
 
 const staticReviews: StoredReview[] = [
     {
@@ -124,6 +125,9 @@ const CustomerReviewScreen: React.FC = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <ReviewCard
+              key={item.id}
+              id={item.id}
+              timestamp={item.timestamp}
               image={item.image}
               name={item.name}
               rating={item.rating}

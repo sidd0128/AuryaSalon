@@ -45,7 +45,7 @@ const MyAccountScreen: React.FC = () => {
         </View>
 
         <ListItem iconName="event" title="My Appointments" onPress={() => navigation.navigate('MyAppointments')} />
-        <ListItem iconName="account-balance-wallet" title="Salon Veda Wallet" onPress={() => ("")} />
+        <ListItem iconName="account-balance-wallet" title="Aurya salons Wallet" onPress={() => ("")} />
         <ListItem iconName="star" title="Rate a Salon" onPress={() => navigation.navigate('RateSalon')} />
 
         <Text style={styles.sectionTitle}>Gift Card</Text>

@@ -22,6 +22,7 @@ import { colors } from '../theme/colors';
 import CustomAlert from '../components/CustomAlert';
 import { AlertVariant } from '../components/CustomAlert/types';
 import Typography from '../theme/typography';
+import TimeSlots from '../components/TimeSlots';
 
 type BookingScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Booking'>;
 type BookingScreenRouteProp = RouteProp<RootStackParamList, 'Booking'>;
@@ -217,31 +218,18 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
       )}
 
-      <Text style={[styles.label, { marginTop: 20 }]}>Available Time Slots:</Text>
-      {availableSlots.length === 0 ? (
-        <Text style={{ fontStyle: 'italic', color: '#999' }}>
-          No available slots for this day.
-        </Text>
-      ) : (
-        <FlatList
-          data={availableSlots}
-          keyExtractor={(item) => item.toISOString()}
-          numColumns={3}
-          renderItem={({ item }) => {
-            const isSelected = selectedSlot?.getTime() === item.getTime();
-            return (
-              <TouchableOpacity
-                onPress={() => setSelectedSlot(item)}
-                style={[styles.slotButton, isSelected && styles.slotButtonSelected]}
-              >
-                <Text style={isSelected ? styles.slotTextSelected : styles.slotText}>
-                  {item.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </Text>
-              </TouchableOpacity>
-            );
-          }}
+       <Text style={[styles.label, { marginTop: 20 }]}>Available Time Slots:</Text>
+       <TimeSlots<Date>
+          slots={availableSlots}
+          selectedSlot={selectedSlot}
+          onSelectSlot={setSelectedSlot}
+          clickable={true}
+          keyExtractor={(slot) => slot.toISOString()}
+          labelExtractor={(slot) =>
+            slot.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }
+          isSelected={(slot, selected) => selected?.getTime() === slot.getTime()}
         />
-      )}
 
       <View style={{ marginTop: 30 }}>
         <Button title="Confirm Booking" onPress={saveBooking} />

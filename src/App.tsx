@@ -23,6 +23,7 @@ import { RootStackParamList } from './navigation/types';
 import 'react-native-get-random-values';
 import CustomerReviewScreen from './screens/CustomerReviewScreen';
 import RateSalonScreen from './screens/RateSalonScreen';
+import SpecialistProfileScreen from './screens/SpecialistProfileScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -43,7 +44,8 @@ const screens: {
   { name: 'CustomerReview', component: CustomerReviewScreen, options: { title: 'Customer Reviews' } },
   { name: 'ChangeLocation', component: ChangeLocationScreen, options: { headerShown: false } },
   { name: 'MyAccount', component: MyAccountScreen, options: { headerShown: false } },
-  {name: 'RateSalon', component: RateSalonScreen, options: { headerShown: false }}
+  {name: 'RateSalon', component: RateSalonScreen, options: { headerShown: false }},
+  {name: 'SpecialistProfileScreen', component: SpecialistProfileScreen, options: { headerShown: false }}
 
 ];
 
