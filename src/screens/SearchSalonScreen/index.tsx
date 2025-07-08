@@ -15,7 +15,7 @@ import SearchBar from '../../components/SearchBar';
 import SalonCard from '../../components/SalonCard';
 import SalonFilter from '../../components/SalonFilter';
 import { useSalonFilters } from '../../hooks/useSalonFilters';
-import { useBottomSheetModal } from '../../hooks/useBottomSheetModal';
+import { BottomSheetModal, useBottomSheetModal } from '../../hooks/useBottomSheetModal';
 
 import { NavigationProp, RoutePropType } from './types';
 import { styles } from './styles';
@@ -64,7 +64,10 @@ const SearchSalonsScreen: React.FC = () => {
     resetFilters,
   } = useSalonFilters(salons, searchText);
 
-  const { openSheet, BottomSheetModal } = useBottomSheetModal();
+  const {
+      openSheet,
+      ref: bottomSheetRef,
+    } = useBottomSheetModal();
 
   useEffect(() => {
     fetchSalons(setSalons);
@@ -122,7 +125,7 @@ const SearchSalonsScreen: React.FC = () => {
           showsVerticalScrollIndicator={false}
         />
 
-        <BottomSheetModal>
+        <BottomSheetModal sheetRef={bottomSheetRef}>
           <SalonFilter
             minRating={minRating}
             priceRange={priceRange}

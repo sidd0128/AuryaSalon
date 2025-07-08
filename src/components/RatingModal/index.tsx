@@ -17,16 +17,21 @@ const RatingModal = ({ onClose }: { onClose: () => void }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [alertInfo, setAlertInfo] = useState<AlertInfo | null>(null);
-
+ 
   const handleSubmit = () => {
-    onClose();
     setAlertInfo({
       title: 'Thank You!',
       message: 'Thanks for your review.',
       variant: 'success',
     });
+
     setRating(0);
     setComment('');
+  };
+
+  const handleAlertClose = () => {
+    setAlertInfo(null); 
+    onClose();
   };
 
   return (
@@ -56,7 +61,7 @@ const RatingModal = ({ onClose }: { onClose: () => void }) => {
       {alertInfo && (
         <CustomAlert
           visible={!!alertInfo}
-          onClose={() => setAlertInfo(null)}
+          onClose={handleAlertClose}
           {...alertInfo}
         />
       )}

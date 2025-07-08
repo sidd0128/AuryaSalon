@@ -5,26 +5,38 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 export const useBottomSheetModal = () => {
   const ref = useRef<any>(null);
 
-  const BottomSheetModal = ({ children, height = 320 }: { children: React.ReactNode; height?: number }) => (
-    <RBSheet
-      ref={ref}
-      closeOnPressMask
-      height={height}
-      customStyles={{
-        container: styles.sheetContainer,
-        draggableIcon: styles.draggableIcon,
-      }}
-    >
-      <View style={{ flex: 1 }}>{children}</View>
-    </RBSheet>
-  );
+  const openSheet = () => ref.current?.open();
+  const closeSheet = () => ref.current?.close();
 
   return {
-    openSheet: () => ref.current?.open(),
-    closeSheet: () => ref.current?.close(),
-    BottomSheetModal,
+    openSheet,
+    closeSheet,
+    ref,
   };
 };
+
+export const BottomSheetModal = ({
+  children,
+  height = 320,
+  sheetRef,
+}: {
+  children: React.ReactNode;
+  height?: number;
+  sheetRef: React.RefObject<any>;
+}) => (
+  <RBSheet
+    ref={sheetRef}
+    closeOnPressMask
+    height={height}
+    customStyles={{
+      container: styles.sheetContainer,
+      draggableIcon: styles.draggableIcon,
+    }}
+  >
+    <View style={{ flex: 1 }}>{children}</View>
+  </RBSheet>
+);
+
 
 const styles = StyleSheet.create({
   sheetContainer: {

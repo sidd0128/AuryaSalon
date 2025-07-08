@@ -19,7 +19,7 @@ import CustomAlert from '../../components/CustomAlert';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useBottomSheetModal } from '../../hooks/useBottomSheetModal';
+import { BottomSheetModal, useBottomSheetModal } from '../../hooks/useBottomSheetModal';
 import { useSalonReviewState } from '../../hooks/useSalonReviewState';
 import { validateReviewFields } from '../../helpers/validateReviewFields';
 import { buildReviewPayload } from '../../utils/buildReviewPayload';
@@ -53,7 +53,11 @@ const RateSalonScreen: React.FC = () => {
     selectedServicesByGender,
   } = useSalonReviewState(selectedCategory);
 
-  const { openSheet, closeSheet, BottomSheetModal } = useBottomSheetModal();
+  const {
+    openSheet,
+    closeSheet,
+    ref: ratingSheetRef,
+  } = useBottomSheetModal();
 
   const handleSelectService = (serviceId: string) => {
     setSelectedServices(prev =>
@@ -247,7 +251,7 @@ const RateSalonScreen: React.FC = () => {
         </TouchableOpacity>
       </ScrollView>
 
-      <BottomSheetModal height={400}>
+      <BottomSheetModal height={400} sheetRef={ratingSheetRef}>
         <FlatList
           data={pickerMode === 'salon' ? allSalons : categoriesForSelectedSalon}
           keyExtractor={item =>

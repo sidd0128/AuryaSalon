@@ -17,7 +17,7 @@ import TimeSlots from '../../components/TimeSlots';
 import HeaderBar from '../../components/HeaderBar';
 import { renderStars } from '../../utils/renderStars';
 import RatingModal from '../../components/RatingModal';
-import { useBottomSheetModal } from '../../hooks/useBottomSheetModal';
+import { BottomSheetModal, useBottomSheetModal } from '../../hooks/useBottomSheetModal';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SpecialistProfileScreen'>;
 
@@ -27,9 +27,8 @@ const SpecialistProfileScreen: React.FC<Props> = ({ route, navigation }) => {
   const {
     openSheet: openRatingSheet,
     closeSheet: closeRatingSheet,
-    BottomSheetModal: RatingBottomSheet,
+    ref: ratingSheetRef,
   } = useBottomSheetModal();
-  
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -106,11 +105,12 @@ const SpecialistProfileScreen: React.FC<Props> = ({ route, navigation }) => {
           <TouchableOpacity style={styles.rateMeButton} onPress={openRatingSheet}>
           <Text style={styles.rateMeText}>Rate Me</Text>
         </TouchableOpacity>
-        <RatingBottomSheet height={360}>
-          <RatingModal onClose={closeRatingSheet} />
-        </RatingBottomSheet>
+        
         </View>
       </View>
+      <BottomSheetModal sheetRef={ratingSheetRef} height={360}>
+        <RatingModal onClose={closeRatingSheet} />
+      </BottomSheetModal>
     </SafeAreaView>
   );
 };
