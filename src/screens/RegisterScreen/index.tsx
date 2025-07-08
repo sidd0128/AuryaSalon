@@ -3,7 +3,6 @@ import {
   View,
   TextInput,
   Text,
-  StyleSheet,
   KeyboardAvoidingView,
   Platform,
   Image,
@@ -16,7 +15,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import Animated, {
   FadeIn,
   FadeInUp,
@@ -27,17 +26,18 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../navigation/types';
-import { colors } from '../theme/colors';
-import Typography from '../theme/typography';
+import type { RootStackParamList } from '../../navigation/types';
 
-const { width, height } = Dimensions.get('window');
+import { styles } from './styles';
+import { colors } from '../../theme/colors';
+
+const { width } = Dimensions.get('window');
 
 const BrandContainer = () => {
   const translateY = useSharedValue(0);
   const imageSize = (width - 48) / 3;
 
-  const brandImages = Array(18).fill(require('../assets/hair_salon_icon.png'));
+  const brandImages = Array(18).fill(require('../../assets/hair_salon_icon.png'));
 
   useEffect(() => {
     translateY.value = withRepeat(
@@ -172,100 +172,5 @@ const RegisterScreen = () => {
     </SafeAreaView>
   );
 };
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 40,
-    paddingTop: 10,
-    backgroundColor: colors.background,
-    flexGrow: 1,
-  },
-  brandFrame: {
-    height: height * 0.35,
-    overflow: 'hidden',
-    marginBottom: 20,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    marginBottom: 12,
-  },
-  brandImage: {
-    borderRadius: 12,
-    resizeMode: 'cover',
-    backgroundColor: colors.surface,
-  },
-  heading: {
-    ...Typography.h1,
-    textAlign: 'center',
-    marginBottom: 25,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '90%',
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderColor: colors.secondary,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    backgroundColor: colors.surface,
-    marginBottom: 20,
-    height: 52,
-  },
-  countryCode: {
-    ...Typography.body,
-    marginRight: 10,
-  },
-  input: {
-    ...Typography.body,
-    flex: 1,
-    letterSpacing: 0.5,
-  },
-  button: {
-    width: '90%',
-    alignSelf: 'center',
-    height: 50,
-    backgroundColor: colors.primary,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  buttonPressed: {
-    opacity: 0.9,
-  },
-  buttonText: {
-    ...Typography.h2,
-    color: colors.textOnPrimary,
-  },
-  termsText: {
-    ...Typography.caption1,
-    textAlign: 'center',
-    marginBottom: 8,
-    paddingHorizontal: 20,
-  },
-  link: {
-    color: colors.secondary,
-    textDecorationLine: 'underline',
-  },
-  supportText: {
-    ...Typography.caption1,
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  guestText: {
-    ...Typography.label2,
-    color: colors.secondary,
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-});
-
-
 
 export default RegisterScreen;

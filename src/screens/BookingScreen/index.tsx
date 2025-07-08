@@ -1,43 +1,25 @@
+// index.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
   TextInput,
   Button,
-  StyleSheet,
-  FlatList,
   Pressable,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RouteProp } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Calendar } from 'react-native-calendars';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Booking, CartItem, RootStackParamList } from '../navigation/types';
-import generateId from '../helpers/generateId';
-import { useCart } from '../context/CartContext';
-import { colors } from '../theme/colors';
-import CustomAlert from '../components/CustomAlert';
-import { AlertVariant } from '../components/CustomAlert/types';
-import Typography from '../theme/typography';
-import TimeSlots from '../components/TimeSlots';
 
-type BookingScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Booking'>;
-type BookingScreenRouteProp = RouteProp<RootStackParamList, 'Booking'>;
-
-type AlertInfo = {
-  variant: AlertVariant;
-  title: string;
-  message: string;
-  onConfirm?: () => void;
-};
-
-interface Props {
-  navigation: BookingScreenNavigationProp;
-  route: BookingScreenRouteProp;
-}
+import { styles } from './styles';
+import { AlertInfo, Props } from './types';
+import { useCart } from '../../context/CartContext';
+import { Booking, CartItem } from '../../navigation/types';
+import generateId from '../../helpers/generateId';
+import TimeSlots from '../../components/TimeSlots';
+import CustomAlert from '../../components/CustomAlert';
+import { generateAvailableSlots } from '../../helpers/bookingUtils';
 
 const SLOT_INTERVAL_MINUTES = 30;
 const WORK_START_HOUR = 9;
@@ -64,42 +46,24 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
     loadBookings();
   }, []);
 
-  const generateAvailableSlots = useCallback(() => {
-    const slots: Date[] = [];
-    const selectedDate = new Date(date);
-    selectedDate.setHours(0, 0, 0, 0);
-
-    for (let hour = WORK_START_HOUR; hour < WORK_END_HOUR; hour++) {
-      for (let min = 0; min < 60; min += SLOT_INTERVAL_MINUTES) {
-        const slot = new Date(selectedDate);
-        slot.setHours(hour, min, 0, 0);
-        if (slot > new Date()) {
-          slots.push(slot);
-        }
-      }
-    }
-
-    const busySlots = bookings
-      .filter(
-        (b) =>
-          b.salonName === cart.salonName &&
-          new Date(b.date).toDateString() === selectedDate.toDateString()
-      )
-      .map((b) => new Date(b.date).getTime());
-
-    const freeSlots = slots.filter((slot) => !busySlots.includes(slot.getTime()));
-
-    setAvailableSlots(freeSlots);
+  const updateSlots = useCallback(() => {
+    const slots = generateAvailableSlots(
+      date,
+      bookings,
+      cart.salonName,
+      SLOT_INTERVAL_MINUTES,
+      WORK_START_HOUR,
+      WORK_END_HOUR
+    );
+    setAvailableSlots(slots);
     setSelectedSlot(null);
   }, [date, bookings, cart.salonName]);
 
   useEffect(() => {
-    generateAvailableSlots();
+    updateSlots()
   }, [generateAvailableSlots]);
 
-
-  const toggleCalendar = () => setCalendarVisible(prev => !prev);
-
+  const toggleCalendar = () => setCalendarVisible((prev) => !prev);
 
   const handleDateSelect = (day: any) => {
     const selectedDate = new Date(day.dateString);
@@ -127,7 +91,7 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
       });
       return;
     }
-  
+
     if (!selectedSlot) {
       setAlertInfo({
         variant: 'warning',
@@ -136,7 +100,7 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
       });
       return;
     }
-  
+
     try {
       const newBookings = cart.items.map((item: CartItem) => ({
         id: generateId(),
@@ -147,15 +111,14 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
         price: item.price,
         duration: item.duration,
       }));
-  
+
       const existingData = await AsyncStorage.getItem('bookings');
       const existingBookings = existingData ? JSON.parse(existingData) : [];
       const updatedBookings = [...existingBookings, ...newBookings];
-  
-      await AsyncStorage.setItem('bookings', JSON.stringify(updatedBookings));
 
+      await AsyncStorage.setItem('bookings', JSON.stringify(updatedBookings));
       dispatchCart({ type: 'CLEAR_CART' });
-  
+
       setAlertInfo({
         variant: 'success',
         title: 'Booking confirmed!',
@@ -171,7 +134,6 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
       });
     }
   };
-  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -218,18 +180,18 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
         </View>
       )}
 
-       <Text style={[styles.label, { marginTop: 20 }]}>Available Time Slots:</Text>
-       <TimeSlots<Date>
-          slots={availableSlots}
-          selectedSlot={selectedSlot}
-          onSelectSlot={setSelectedSlot}
-          clickable={true}
-          keyExtractor={(slot) => slot.toISOString()}
-          labelExtractor={(slot) =>
-            slot.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-          }
-          isSelected={(slot, selected) => selected?.getTime() === slot.getTime()}
-        />
+      <Text style={[styles.label, { marginTop: 20 }]}>Available Time Slots:</Text>
+      <TimeSlots<Date>
+        slots={availableSlots}
+        selectedSlot={selectedSlot}
+        onSelectSlot={setSelectedSlot}
+        clickable={true}
+        keyExtractor={(slot) => slot.toISOString()}
+        labelExtractor={(slot) =>
+          slot.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        }
+        isSelected={(slot, selected) => selected?.getTime() === slot.getTime()}
+      />
 
       <View style={{ marginTop: 30 }}>
         <Button title="Confirm Booking" onPress={saveBooking} />
@@ -245,94 +207,5 @@ const BookingScreen: React.FC<Props> = ({ navigation, route }) => {
     </ScrollView>
   );
 };
-
-
-const styles = StyleSheet.create({
-  container: { 
-    padding: 16, 
-    backgroundColor: colors.background 
-  },
-  header: { 
-    ...Typography.h1,
-    marginBottom: 20, 
-    textAlign: 'center', 
-    color: colors.starlight,
-  },
-  label: { 
-    ...Typography.h3,
-    marginTop: 12, 
-  },
-  value: { 
-    ...Typography.body,
-    marginBottom: 8, 
-    color: colors.textSecondary,
-  },
-  input: {
-    ...Typography.body,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginTop: 6,
-    color: colors.text,
-    backgroundColor: colors.surface,
-  },
-  dateButton: {
-    padding: 12,
-    backgroundColor: colors.surface,
-    borderRadius: 6,
-    marginTop: 6,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  dateButtonText: {
-    ...Typography.body,
-    color: colors.text,
-  },
-  card: {
-    backgroundColor: colors.surface,
-    padding: 12,
-    borderRadius: 10,
-    marginTop: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  cardTitle: {
-    ...Typography.h3,
-  },
-  cardDetail: {
-    ...Typography.label2,
-    color: colors.textSecondary,
-    marginTop: 2,
-  },
-  slotButton: {
-    flex: 1,
-    margin: 6,
-    paddingVertical: 12,
-    backgroundColor: colors.surface,
-    borderRadius: 6,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  slotButtonSelected: {
-    backgroundColor: colors.primary,
-    borderColor: colors.secondary,
-  },
-  slotText: {
-    ...Typography.label1,
-    color: colors.text,
-  },
-  slotTextSelected: {
-    ...Typography.label1,
-    color: colors.textOnPrimary,
-    fontWeight: '700',
-  },
-});
-
-
 
 export default BookingScreen;

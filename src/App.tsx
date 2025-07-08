@@ -6,24 +6,26 @@ import { preloadStaticData } from './utils/preloadData';
 import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 
-import SplashScreen from './screens/SplashScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import SearchSalonsScreen from './screens/SearchSalonsScreen';
-import SalonInfoScreen from './screens/SalonInfoScreen';
-import TreatmentsScreen from './screens/TreatmentsScreen';
-import CartScreen from './screens/CartScreen';
-import BookingScreen from './screens/BookingScreen';
-import MyAppointmentsScreen from './screens/MyAppointmentsScreen';
-import ChangeLocationScreen from './screens/ChangeLocationScreen';
-import MyAccountScreen from './screens/MyAccountScreen';
-import ChatScreen from './screens/ChatScreen';
+
 
 import { RootStackParamList } from './navigation/types';
 
 import 'react-native-get-random-values';
-import CustomerReviewScreen from './screens/CustomerReviewScreen';
+import SplashScreen from './screens/SplashScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import SearchSalonsScreen from './screens/SearchSalonScreen';
+import SalonInfoScreen from './screens/SalonInfoScreen';
+import ChangeLocationScreen from './screens/ChangeLocationScreen';
+import TreatmentsScreen from './screens/TreatmentsScreen';
+import CartScreen from './screens/CartScreen';
+import BookingScreen from './screens/BookingScreen';
+import MyAppointmentsScreen from './screens/MyAppointmentsScreen';
+import MyAccountScreen from './screens/MyAccountScreen';
 import RateSalonScreen from './screens/RateSalonScreen';
 import SpecialistProfileScreen from './screens/SpecialistProfileScreen';
+import SpecialistReviewScreen from './screens/SpecialistReviewScreen';
+import CustomerReviewScreen from './screens/CustomerReviewScreen';
+
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -36,7 +38,7 @@ const screens: {
   { name: 'Register', component: RegisterScreen, options: { headerShown: false } },
   { name: 'SearchSalons', component: SearchSalonsScreen, options: { headerShown: false } },
   { name: 'SalonInfo', component: SalonInfoScreen, options: { headerShown: false } },
-  { name: 'Chat', component: ChatScreen, options: { headerShown: true, title: 'Chat with Salon' } },
+  { name: 'Chat', component: ChangeLocationScreen, options: { headerShown: true, title: 'Chat with Salon' } },
   { name: 'Treatments', component: TreatmentsScreen, options: { headerShown: false } },
   { name: 'Cart', component: CartScreen, options: { title: 'Your Cart' } },
   { name: 'Booking', component: BookingScreen },
@@ -45,7 +47,8 @@ const screens: {
   { name: 'ChangeLocation', component: ChangeLocationScreen, options: { headerShown: false } },
   { name: 'MyAccount', component: MyAccountScreen, options: { headerShown: false } },
   {name: 'RateSalon', component: RateSalonScreen, options: { headerShown: false }},
-  {name: 'SpecialistProfileScreen', component: SpecialistProfileScreen, options: { headerShown: false }}
+  {name: 'SpecialistProfileScreen', component: SpecialistProfileScreen, options: { headerShown: false }},
+  {name: 'SpecialistReviewScreen', component: SpecialistReviewScreen, options: { headerShown: false }}
 
 ];
 

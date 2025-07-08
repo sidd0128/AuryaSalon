@@ -1,8 +1,9 @@
+import { AlertVariant } from "../components/CustomAlert/types";
 import { SpecialistProfile } from "../screens/SpecialistProfileScreen/types";
 
 // ---------- Navigation Types ----------
 export type RootStackParamList = {
-  Splash: undefined;  
+  Splash: undefined;
   Register: undefined;
   SearchSalons: { location?: string };
   Chat: { salonId: string; salonName: string };
@@ -21,7 +22,9 @@ export type RootStackParamList = {
   CustomerReview: undefined;
   RateSalon: undefined;
   SpecialistProfileScreen: { specialist: SpecialistProfile };
+  SpecialistReviewScreen: { reviews: Review[] };
 };
+
 
 // ---------- Core Models ----------
 
@@ -80,7 +83,7 @@ export interface Service {
 }
 
 // Transformed version used in UI or cart/booking (optional)
-export type Treatment = {
+export interface Treatment  {
   id: string;
   name: string;
   price: number;
@@ -88,7 +91,7 @@ export type Treatment = {
 };
 
 // Category for treatments in Treatments screen
-export type TreatmentCategory = {
+export interface TreatmentCategory {
   category: string;
   count: number;
   services: Treatment[];

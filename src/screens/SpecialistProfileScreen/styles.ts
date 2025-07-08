@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import theme from '../../theme';
+import Typography from '../../theme/typography';
 
 const { colors, spacing, fonts, fontSizes } = theme;
 const screenWidth = Dimensions.get('window').width;
@@ -129,4 +130,33 @@ export const styles = StyleSheet.create({
     fontSize: fontSizes.base,
     color: colors.text,
   },
+  rateMeContainer: {
+    padding: spacing.md,
+    backgroundColor: colors.background,
+    borderTopWidth: 1,
+    borderTopColor: colors.border,
+  },
+
+  rateMeButton: {
+    backgroundColor: colors.primary,
+    paddingVertical: spacing.md,
+    borderRadius: spacing.sm,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  rateMeText: {
+    ...Typography.label1,
+    color: colors.textOnPrimary,
+  },
+  viewMoreButton: {
+    alignSelf: 'flex-start',
+    marginLeft: theme.spacing.md,
+    marginTop: theme.spacing.xs,
+  },
+  
+  viewMoreText: {
+    ...Typography.link,
+  },
+  
 });

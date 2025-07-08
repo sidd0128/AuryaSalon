@@ -4,41 +4,23 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  StyleSheet,
-  Platform,
   ActivityIndicator,
   Linking,
   SafeAreaView,
+  Platform,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Geolocation from '@react-native-community/geolocation';
 import { check, request, PERMISSIONS, RESULTS, Permission } from 'react-native-permissions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/types';
-import GooglePlacesSearchBar from '../components/GooglePlacesSearchBar';
-import CustomAlert from '../components/CustomAlert';
-import { colors } from '../theme/colors';
-import { AlertVariant } from '../components/CustomAlert/types';
-import { reverseGeocode } from '../helpers/reverseGeocode';
-import Typography from '../theme/typography';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ChangeLocation'>;
+import GooglePlacesSearchBar from '../../components/GooglePlacesSearchBar';
+import CustomAlert from '../../components/CustomAlert';
+import { reverseGeocode } from '../../helpers/reverseGeocode';
 
-interface LocationItem {
-  id: string;
-  name: string;
-}
-
-type AlertInfo = {
-  variant: AlertVariant;
-  title: string;
-  message: string;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-  confirmText?: string;
-  cancelText?: string;
-};
+import { styles } from './styles';
+import { Props, LocationItem, AlertInfo } from './types';
+import { colors } from '../../theme/colors';
 
 const RECENT_SEARCHES_KEY = '@recent_searches';
 const MAX_RECENT_SEARCHES = 10;
@@ -206,7 +188,7 @@ const ChangeLocationScreen: React.FC<Props> = ({ navigation }) => {
 
         <GooglePlacesSearchBar
           placeholder="Search for area, street name..."
-          onPlaceSelected={(location) => handleLocationSelect(location)}
+          onPlaceSelected={handleLocationSelect}
         />
 
         <TouchableOpacity
@@ -231,7 +213,10 @@ const ChangeLocationScreen: React.FC<Props> = ({ navigation }) => {
           data={recentSearches}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity style={styles.recentItem} onPress={() => handleLocationSelect(item.name)}>
+            <TouchableOpacity
+              style={styles.recentItem}
+              onPress={() => handleLocationSelect(item.name)}
+            >
               <Icon name="history" size={20} color={colors.textSecondary} />
               <Text style={styles.recentText}>{item.name}</Text>
             </TouchableOpacity>
@@ -250,59 +235,5 @@ const ChangeLocationScreen: React.FC<Props> = ({ navigation }) => {
     </SafeAreaView>
   );
 };
-
-
-const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: colors.background },
-  container: { flex: 1, paddingHorizontal: 16, paddingTop: 16, backgroundColor: colors.background },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-    paddingHorizontal: 4,
-  },
-  backButton: {
-    padding: 8,
-  },
-  headerTitle: {
-    ...Typography.h2,
-    textAlign: 'center',
-    flex: 1,
-  },
-  currentLocationButton: {
-    backgroundColor: colors.primary,
-    padding: 12,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  currentLocationText: {
-    ...Typography.label1,
-    color: colors.textOnPrimary,
-  },
-  currentLocationSubText: {
-    ...Typography.caption1,
-    color: colors.textOnPrimary,
-  },
-  disabledButton: {
-    opacity: 0.7,
-  },
-  recentSearchesTitle: {
-    ...Typography.h3,
-    marginBottom: 8,
-  },
-  recentItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 8,
-  },
-  recentText: {
-    ...Typography.label2,
-    marginLeft: 8,
-  },
-});
-
-
 
 export default ChangeLocationScreen;

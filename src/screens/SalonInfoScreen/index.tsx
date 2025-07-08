@@ -1,33 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   FlatList,
-  StyleSheet,
   TouchableOpacity,
   Animated,
   ScrollView,
-  Easing,
 } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { RootStackParamList, Service } from '../navigation/types';
-import TabButton from '../components/TabButton';
-import ServiceCard from '../components/ServiceCard';
-import PhotoCard from '../components/PhotoCard';
-import ActionButton from '../components/ActionButton';
-import HeaderBar from '../components/HeaderBar';
-import SalonImageCarousel from '../components/SalonImageCarousel';
-import { colors } from '../theme/colors';
-import CustomerReviewScreen from './CustomerReviewScreen';
-import Typography from '../theme/typography';
-import SpecialistCard from '../components/SpecialistCard';
-import { mapSpecialistToProfile } from '../helpers/mapSpecialistToProfile';
+import { Service } from '../../navigation/types';
+import TabButton from '../../components/TabButton';
+import ServiceCard from '../../components/ServiceCard';
+import PhotoCard from '../../components/PhotoCard';
+import ActionButton from '../../components/ActionButton';
+import HeaderBar from '../../components/HeaderBar';
+import SalonImageCarousel from '../../components/SalonImageCarousel';
+import CustomerReviewScreen from './../CustomerReviewScreen';
+import SpecialistCard from '../../components/SpecialistCard';
+import { mapSpecialistToProfile } from '../../helpers/mapSpecialistToProfile';
 
-type TabType = 'Services' | 'Photos' | 'About' | 'Reviews' | 'Specialists';
-type Props = NativeStackScreenProps<RootStackParamList, 'SalonInfo'>;
+import { colors } from '../../theme/colors';
+import Typography from '../../theme/typography';
+import { styles } from './styles';
+import type { Props, TabType } from './types';
+import { useMarqueeAnimation } from '../../hooks/useMarqueeAnimation';
 
 
 const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
@@ -35,24 +33,10 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
   const [activeTab, setActiveTab] = useState<TabType>('Services');
   const salonImages = salon.photos.map(photo => photo.imageKey);
 
-  const [textWidth, setTextWidth] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(0);
-  const animatedValue = useRef(new Animated.Value(0)).current;
+  const [textWidth, setTextWidth] = React.useState(0);
+  const [containerWidth, setContainerWidth] = React.useState(0);
 
-  useEffect(() => {
-    if (textWidth === 0 || containerWidth === 0) return;
-
-    animatedValue.setValue(containerWidth);
-
-    Animated.loop(
-      Animated.timing(animatedValue, {
-        toValue: -textWidth,
-        duration: 12000,
-        useNativeDriver: true,
-        easing: Easing.linear,
-      })
-    ).start();
-  }, [textWidth, containerWidth]);
+  const animatedValue = useMarqueeAnimation(textWidth, containerWidth);
 
   const handleBookNow = (service: Service) => {
     navigation.navigate('Treatments', {
@@ -134,7 +118,6 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
             ))}
           </ScrollView>
 
-
           {activeTab === 'Services' && (
             <FlatList
               data={salon.services}
@@ -182,39 +165,43 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
             </View>
           )}
 
-            {activeTab === 'Reviews' && (
-              <View style={{ marginTop: 12 }}>
-                <CustomerReviewScreen />
-              </View>
-            )}
+          {activeTab === 'Reviews' && (
+            <View style={{ marginTop: 12 }}>
+              <CustomerReviewScreen />
+            </View>
+          )}
 
-            {activeTab === 'Specialists' && (
-              <FlatList
-                data={salon.specialists || []}
-                keyExtractor={(item) => item.id}
-                numColumns={2}
-                renderItem={({ item }) => (
-                  <SpecialistCard 
-                    specialist={item} 
-                    onPress={() => navigation.navigate('SpecialistProfileScreen', { specialist: mapSpecialistToProfile(item)})}
-                  />
-                )}
-                columnWrapperStyle={{
-                  justifyContent: 'space-between',
-                  paddingHorizontal: 8,
-                  marginBottom: 16,
-                }}
-                contentContainerStyle={{
-                  paddingBottom: 20,
-                  paddingTop: 8,
-                }}
-                ListEmptyComponent={
-                  <View style={styles.emptyContainer}>
-                    <Text style={styles.emptyText}>No specialists available</Text>
-                  </View>
-                }
-              />
-            )}
+          {activeTab === 'Specialists' && (
+            <FlatList
+              data={salon.specialists || []}
+              keyExtractor={(item) => item.id}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <SpecialistCard
+                  specialist={item}
+                  onPress={() =>
+                    navigation.navigate('SpecialistProfileScreen', {
+                      specialist: mapSpecialistToProfile(item),
+                    })
+                  }
+                />
+              )}
+              columnWrapperStyle={{
+                justifyContent: 'space-between',
+                paddingHorizontal: 8,
+                marginBottom: 16,
+              }}
+              contentContainerStyle={{
+                paddingBottom: 20,
+                paddingTop: 8,
+              }}
+              ListEmptyComponent={
+                <View style={styles.emptyContainer}>
+                  <Text style={styles.emptyText}>No specialists available</Text>
+                </View>
+              }
+            />
+          )}
         </ScrollView>
 
         <View style={styles.buttonContainer}>
@@ -239,152 +226,5 @@ const SalonInfoScreen: React.FC<Props> = ({ route, navigation }) => {
     </SafeAreaView>
   );
 };
-
-
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: colors.background,
-  },
-  container: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: 100,
-    paddingHorizontal: 16,
-  },
-  title: {
-    ...Typography.h1,
-    marginTop: 12,
-  },
-  location: {
-    ...Typography.body,
-    color: colors.textSecondary,
-    marginBottom: 12,
-  },
-  statusContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  statusText: {
-    ...Typography.label2,
-    color: colors.error,
-    marginRight: 4,
-  },
-  actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 6,
-    marginBottom: 12,
-  },
-  directionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 8,
-  },
-  contactButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 8,
-    gap: 6,
-  },
-  offerTitle: {
-    ...Typography.h2,
-    marginBottom: 8,
-  },
-  offerItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 30,
-    width: '100%',
-  },
-  offerText: {
-    ...Typography.label2,
-    color: colors.text,
-  },
-  tabContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-    marginBottom: 12,
-  },
-  
-  tabScrollContent: {
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    alignItems: 'center',
-  },
-  row: {
-    justifyContent: 'space-between',
-  },
-  sectionTitle: {
-    ...Typography.h2,
-    fontSize: 20,
-    marginTop: 20,
-    marginBottom: 8,
-  },
-  aboutText: {
-    ...Typography.label2,
-    color: colors.textSecondary,
-    marginBottom: 12,
-  },
-  amenityText: {
-    ...Typography.label2,
-    marginBottom: 4,
-    color: colors.text,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 16,
-    borderTopWidth: 1,
-    borderTopColor: colors.border,
-    backgroundColor: colors.background,
-  },
-  bookButton: {
-    backgroundColor: colors.primary,
-    padding: 12,
-    borderRadius: 8,
-    flex: 1,
-    marginRight: 8,
-  },
-  buttonText: {
-    ...Typography.label1,
-    color: colors.textOnPrimary,
-    textAlign: 'center',
-  },
-  floatingChatButton: {
-    position: 'absolute',
-    bottom: 90,
-    right: 20,
-    backgroundColor: colors.primary,
-    borderRadius: 30,
-    padding: 14,
-    elevation: 6,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-  },
-  emptyContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  emptyText: {
-    fontSize: 16,
-    color: colors.textSecondary,
-  },
-});
-
-
 
 export default SalonInfoScreen;
